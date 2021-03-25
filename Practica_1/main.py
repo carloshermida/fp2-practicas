@@ -1,4 +1,9 @@
 # Práctica 1
 # Carlos Hermida | Clara Lado
+# Main
 
-print("Prueba")
+from calculus import iniciar
+
+if __name__ == "__main__":
+    
+    iniciar()
