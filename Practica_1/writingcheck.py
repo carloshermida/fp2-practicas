@@ -31,7 +31,7 @@ def check_brackets(infijo):
     return False
 
 def proximity_symbols(infijo):
-    """ Función que revisa que los signos matemáticos estén bien puestos """
+    """ Función que revisa que los signos matemáticos esten bien puestos """
     simbolos = ["+", "-", "*", "/", "**"]
     infijo = infijo.split()
     if infijo[0] or infijo[-1] in simbolos:
@@ -53,4 +53,21 @@ def proximity_symbols(infijo):
                         return False
             return True
                    
-            
+        
+ #igual son burradas que se podrian hacer mucho mas simples, por cierto, este error de abjo si lo metemos el la funcion
+#encagrada de operar era muy sencillo, tmb podriamos poner en la f iniciar antes de pila peak un if que si op==/ y num2==0 haga        
+def correct_division(infijo):
+     """ Función encargada de """
+        postfijo = infixToPostfix(infijo)
+        lista_postfijo = postfijo.split(" ")
+        
+        pila = Stack()
+    
+        for item in lista_postfijo:
+            pila.push(item)
+            if item == 0:
+                cero = int(pila.pop())
+                elemento = pila.pop()
+                if elemento == "/":
+                    return False
+            return True
