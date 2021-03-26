@@ -58,16 +58,16 @@ def proximity_symbols(infijo):
 #encagrada de operar era muy sencillo, tmb podriamos poner en la f iniciar antes de pila peak un if que si op==/ y num2==0 haga        
 def correct_division(infijo):
      """ Función encargada de """
-        postfijo = infixToPostfix(infijo)
-        lista_postfijo = postfijo.split(" ")
+     postfijo = infixToPostfix(infijo)
+     lista_postfijo = postfijo.split(" ")
         
-        pila = Stack()
+     pila = Stack()
     
-        for item in lista_postfijo:
-            pila.push(item)
-            if item == 0:
-                cero = int(pila.pop())
-                elemento = pila.pop()
-                if elemento == "/":
-                    return False
-            return True
+     for item in lista_postfijo:
+         pila.push(item)
+         if item == 0:
+             cero = int(pila.pop())
+             elemento = pila.pop()
+             if elemento == "/":
+                 return False
+         return True
