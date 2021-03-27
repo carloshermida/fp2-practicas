@@ -1,6 +1,10 @@
-# Práctica 1
-# Carlos Hermida | Clara Lado
-# Módulo Infijo a Postfijo
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Practica 1
+Carlos Hermida Clara Lado
+Modulo Infijo a Postfijo
+"""
 
 from stack import ArrayStack as Stack
 
