@@ -1,8 +1,12 @@
-# Práctica 1
-# Carlos Hermida | Clara Lado
-# Módulo Pila
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Practica 1
+Carlos Hermida Clara Lado
+Modulo Pila
+"""
 
-"""Definición de las funciones de la clase pila"""
+"""Definicion de las funciones de la clase pila"""
 
 class Empty(Exception):
   """Error attempting to access an element from an empty container."""
