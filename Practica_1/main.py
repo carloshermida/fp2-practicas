@@ -1,4 +1,4 @@
-5+5#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Practica 1
