@@ -9,42 +9,42 @@ Modulo Pila
 """Definicion de las funciones de la clase pila"""
 
 class Empty(Exception):
-  """Error attempting to access an element from an empty container."""
+  """Error intentando acceder a un elemento de un contenedor vacio."""
   pass
 
 class ArrayStack:
-  """LIFO Stack implementation using a Python list as underlying storage."""
+  """Implementación de LIFO Stack usando una lista de Python como almacenamiento subyacente."""
 
   def __init__(self):
-    """Create an empty stack."""
-    self._data = []                       # nonpublic list instance
+    """Crear una pila vacia."""
+    self._data = []                       # instancia de lista no pública
 
   def __len__(self):
-    """Return the number of elements in the stack."""
+    """Devuelve el numero de elementos de una pila."""
     return len(self._data)
 
   def is_empty(self):
-    """Return True if the stack is empty."""
+    """Devuelve verdadero si la pila esta vacia."""
     return len(self._data) == 0
 
   def push(self, e):
-    """Add element e to the top of the stack."""
-    self._data.append(e)                  # new item stored at end of list
+    """Añade un elemento e en la parte superior de la pila."""
+    self._data.append(e)                  # nuevo elemento almacenado al final de la lista
 
   def peek(self):
-    """Return (but do not remove) the element at the top of the stack.
+    """Devuelve (pero no elimina) el elemento de la parte superior de la pila.
 
-    Raise Empty exception if the stack is empty.
+    Raise Empty exception si la pila esta vacia.
     """
     if self.is_empty():
-      raise Empty('Stack is empty')
-    return self._data[-1]                 # the last item in the list
+      raise Empty('Pila vacia')
+    return self._data[-1]                 # el ultimo elemento de la lista
 
   def pop(self):
-    """Remove and return the element from the top of the stack (i.e., LIFO).
+    """Elimina y devuelve el elemento de la parte superior de la pila (i.e., LIFO).
 
-    Raise Empty exception if the stack is empty.
+    Raise Empty exception si la pila esta vacia.
     """
     if self.is_empty():
-      raise Empty('Stack is empty')
-    return self._data.pop()               # remove last item from list
+      raise Empty('Pila vacia')
+    return self._data.pop()               # elimina el ultimo elemento de la lista
