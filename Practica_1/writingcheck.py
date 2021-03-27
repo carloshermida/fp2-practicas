@@ -6,62 +6,74 @@ Carlos Hermida Clara Lado
 Modulo Comprobacion de escritura
 """
 
-from itp import infixToPostfix
+#from itp import infixToPostfix
 from stack import ArrayStack as Stack
 
-def check_spaces(infijo):
-    """ Función que comprueba la presencia de todos los especios necesarios para separar los caracteres  """
-    total = len(infijo)
-    caracteres = len(infijo.split())
-    if total - caracteres == caracteres - 1:
-        return True
-    else:
-        return False
+def espaciador(infijo: str) -> str:
+    """Devuelve el infijo espaciado si esta correctamente escrito"""
+    numeros = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    delimitadores = ["(", ")", "{", "}", "[", "]"]
+    simbolos = ["+", "-", "*", "/"]
+    stack = Stack()
+    infijo_espaciado_pila = Stack()
+    # carga todo en la pila
+    for caracter in infijo:
+        # que el primer elemento no sea un operador o espacio
+        if stack.is_empty and (caracter not in numeros and caracter not in delimitadores):
+            print("1")
+            return "ERROR"
+        stack.push(caracter)
+    
+    
+    ultimo = stack.peek()
+    # que el ultimo elemento no sea un operador o espacio
+    if ultimo in numeros or ultimo in delimitadores:
+        while True:
+            anterior = stack.peek()
+            infijo_espaciado_pila.push(anterior)
+            stack.pop()
+            if stack.is_empty:
+                break
+            infijo_espaciado_pila.push(" ")
+            actual = stack.peek()
+            
+            if anterior in numeros and (actual not in numeros and actual not in simbolos and actual not in delimitadores):
+                return "ERROR"
+            
+            elif anterior in delimitadores and (actual not in delimitadores and actual not in numeros):
+                return "ERROR"
+            
+            elif anterior in ["+", "-", "*", "/"] and actual not in numeros:
+                return "ERROR"
+        
+        infijo_espaciado_cadena = str("")
+        while not infijo_espaciado_pila.is_empty:
+            infijo_espaciado_cadena += str(infijo_espaciado_pila.pop())
+        
+        return infijo_espaciado_cadena
+    
+    return "ERROR" 
+   
 
-def check_brackets(expr):
-    """Return True if all delimiters are properly match; False otherwise."""
-    lefty = '({['               # opening delimiters
-    righty = ')}]'              # respective closing delims
-    S = Stack()
-    for c in expr:
-        if c in lefty:
-            S.push(c)           # push left delimiter on stack
-        elif c in righty:
-            if S.is_empty():
-                return False    # nothing to match with
-            if righty.index(c) != lefty.index(S.pop()):
-                return False    # mismatched
-    return S.is_empty()         # were all symbols matched?
+def check_brackets(infijo):
+    """Devuelve verdaero si los delimitadores estan bien emparejados"""
+    lefty = '({['               # delimitadores abiertos
+    righty = ')}]'              # delimitadores cerrados
+    stack = Stack()
+    for caracter in infijo:
+        if caracter in lefty:
+            stack.push(caracter)           # añade un delimitador abierto a la pila
+        elif caracter in righty:
+            if stack.is_empty():
+                return False    # nada para emparejar
+            if righty.index(caracter) != lefty.index(stack.pop()):
+                return False    # desemparejado
+    return stack.is_empty()         # devuleve verdadero si la pila esta vacia (todos emparejados)
 
-
-# PROVISIONAL
-
-def proximity_symbols(infijo):
-    """ Función que revisa que los signos matemáticos esten bien puestos """
-    simbolos = ["+", "-", "*", "/", "**"]
-    infijo = infijo.split()
-    if infijo[0] or infijo[-1] in simbolos:
-        return False
-    else:
-        for simbolo in simbolos:
-            postfijo = infixToPostfix(infijo)
-            lista_postfijo = postfijo.split(" ")
-            simbolos = ["+", "-", "*", "/", "**"]
-            pila = Stack()
-            a = 0
-            b = 0
-            for item in lista_postfijo:
-                
-                if item in simbolos:
-                    b = a
-                    a = item
-                    if a == b:
-                        return False
-            return True
-                   
+"""
 
 def correct_division(infijo):
-     """ Función encargada de """
+     Función encargada de
      postfijo = infixToPostfix(infijo)
      lista_postfijo = postfijo.split(" ")
         
@@ -75,4 +87,4 @@ def correct_division(infijo):
              if elemento == "/":
                  return False
          return True
-     
+"""     
