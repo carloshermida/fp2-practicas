@@ -50,6 +50,8 @@ def iniciar():
                 if item in simbolos:
                     op = pila.pop()
                     num2 = int(pila.pop())
+                    if op == "/" and num2 == 0:
+                        return "ERROR"
                     num1 = int(pila.pop())
                     pila.push(int(operador(op, num1, num2)))
         
