@@ -1,6 +1,11 @@
-# Práctica 1
-# Carlos Hermida | Clara Lado
-# Módulo Cálculos
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Practica 1
+Carlos Hermida Clara Lado
+Modulo Calculos
+"""
+
 from writingcheck import check_spaces, check_brackets
 from itp import infixToPostfix
 from stack import ArrayStack as Stack
@@ -46,6 +51,6 @@ def iniciar():
                 num1 = int(pila.pop())
                 pila.push(int(operador(op, num1, num2)))
     
-        print(pila.peek())
+        return(pila.peek())
     
-    print("Algo anda mal amigo")
+    return("Algo anda mal amigo")
