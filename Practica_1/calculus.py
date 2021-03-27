@@ -38,21 +38,33 @@ def iniciar():
     infijo = input("Introduce una expresion infija: ")
     
     if check_brackets(infijo):
-        infijo = espaciador(infijo)
+        print("Infijo: ",infijo)
+        
+        
+        # ERROR     sale de la funcion espaciador vacio Y NI IDEA
+        infijo2 = espaciador(infijo)
+        
+        
+        
+        print("Infijo2: ", infijo2)
         if infijo != "ERROR":
-            postfijo = infixToPostfix(infijo)
+            postfijo = infixToPostfix(infijo2)
             lista_postfijo = postfijo.split(" ")
             simbolos = ["+", "-", "*", "/", "**"]
             pila = Stack()
-    
+            print("Pasa por aqqu")
+            print(lista_postfijo)
             for item in lista_postfijo:
                 pila.push(item)
-                if item in simbolos:
+                print("Pasa por aca")
+                if item=="-" or item=="+" or item=="*" or item=="**" or item=="/":
                     op = pila.pop()
                     num2 = int(pila.pop())
                     num1 = int(pila.pop())
                     pila.push(int(operador(op, num1, num2)))
-        
+                    print("Pasa por l")
             return(pila.peek())
-    
+        else:
+            print("hAY UN PROBLEMA EN LA FUNCION ESPACIADOR")
+        
     return("Algo anda mal amigo")

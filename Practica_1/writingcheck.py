@@ -11,17 +11,25 @@ from stack import ArrayStack as Stack
 
 def espaciador(infijo: str) -> str:
     """Devuelve el infijo espaciado si esta correctamente escrito"""
+    print("Pasa por la f espaciador")
     numeros = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     delimitadores = ["(", ")", "{", "}", "[", "]"]
-    simbolos = ["+", "-", "*", "/"]
+    simbolos = ["+", "-", "*", "/", "**"]
+    
+    #convierto infijo en una lista que separe todos los caraceres que la forman 
+    cadena = infijo
+    listainfijo = list(cadena)
     stack = Stack()
+    
+    # que el primer elemento sea o un numero o un delimitador
+    primelem = listainfijo[0]
+    if primelem not in numeros and primelem not in delimitadores:
+        return "ERROR"
+        print("2")
     infijo_espaciado_pila = Stack()
+    
     # carga todo en la pila
-    for caracter in infijo:
-        # que el primer elemento no sea un operador o espacio
-        if stack.is_empty and (caracter not in numeros and caracter not in delimitadores):
-            print("1")
-            return "ERROR"
+    for caracter in listainfijo:
         stack.push(caracter)
     
     
@@ -38,12 +46,15 @@ def espaciador(infijo: str) -> str:
             actual = stack.peek()
             
             if anterior in numeros and (actual not in numeros and actual not in simbolos and actual not in delimitadores):
+                print("3")
                 return "ERROR"
             
             elif anterior in delimitadores and (actual not in delimitadores and actual not in numeros):
+                print("4")
                 return "ERROR"
             
             elif anterior in ["+", "-", "*", "/"] and actual not in numeros:
+                print("5")
                 return "ERROR"
         
         infijo_espaciado_cadena = str("")
@@ -51,12 +62,13 @@ def espaciador(infijo: str) -> str:
             infijo_espaciado_cadena += str(infijo_espaciado_pila.pop())
         
         return infijo_espaciado_cadena
-    
+    print("6")
     return "ERROR" 
    
 
 def check_brackets(infijo):
     """Devuelve verdaero si los delimitadores estan bien emparejados"""
+    print("Pasa por la f check_brackets")
     lefty = '({['               # delimitadores abiertos
     righty = ')}]'              # delimitadores cerrados
     stack = Stack()
