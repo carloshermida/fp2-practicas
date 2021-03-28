@@ -14,10 +14,11 @@ def espaciador(infijo: str) -> str:
     numeros = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     delimitadores = ["(", ")", "{", "}", "[", "]"]
     simbolos = ["+", "-", "*", "/"]
+    especial = ["t", "c", "s", "r"]
     pila = Stack()
     infijo_espaciado_pila = Stack()
     # Comprobamos que el primer elemento no sea un operador o espacio
-    if infijo[0] not in numeros and infijo[0] not in delimitadores:
+    if infijo[0] not in numeros and infijo[0] not in delimitadores and infijo[0] not in especial:
         return "ERROR"
     # Cargamos todo en la pila
     for caracter in infijo:
@@ -31,30 +32,57 @@ def espaciador(infijo: str) -> str:
             infijo_espaciado_pila.push(anterior)
             infijo_espaciado_pila.push(" ")
             actual = pila.peek()
-            if anterior in numeros and (actual not in numeros and actual not in simbolos and actual not in delimitadores):
+            
+            if anterior in numeros and (actual not in numeros and actual not in simbolos and actual not in delimitadores and actual != "."):
+                print("1")
                 return "ERROR"
             
-            elif anterior in delimitadores and (actual not in delimitadores and actual not in numeros):
+            elif anterior in ["(", "[", "{"] and (actual not in delimitadores and actual not in numeros and actual not in simbolos and actual not in especial):
+                print("2")
                 return "ERROR"
             
-            elif anterior in ["+", "-", "/"] and actual not in numeros:
+            elif anterior in [")", "]", "}"] and (actual not in delimitadores and actual not in numeros):
+                print("2")
                 return "ERROR"
             
-            elif anterior == "*" and actual not in numeros and actual != "*":
+            elif anterior in ["+", "-", "/"] and actual not in numeros and actual not in delimitadores:
+                print("3")
                 return "ERROR"
             
-            if anterior in numeros and actual in numeros:
+            elif anterior == "*" and actual not in numeros and actual != "*" and actual not in delimitadores:
+                print("4")
+                return "ERROR"
+           
+            elif anterior == "." and actual not in numeros:
+                print("5")
+                return "ERROR"
+            
+            elif anterior in especial and actual not in delimitadores and actual not in simbolos:
+                print("4")
+                return "ERROR"
+            
+            if anterior in numeros and (actual in numeros or actual == "."):
+                infijo_espaciado_pila.pop()
+            
+            if anterior == "." and actual in numeros:
                 infijo_espaciado_pila.pop()
             
             if anterior == "*" and actual == "*":
                 infijo_espaciado_pila.pop()
-                
+            
+            if anterior == "-" and actual == "(":
+                infijo_espaciado_pila.push("0")
+                infijo_espaciado_pila.push(" ")
+             
+             
         infijo_espaciado_pila.push(actual)
         infijo_espaciado_cadena = str("")
         while infijo_espaciado_pila.__len__() != 0:
             infijo_espaciado_cadena += str(infijo_espaciado_pila.pop())
+        print("\nINFIJO", "_"*(30-len("INFIJO")), infijo_espaciado_cadena)
         return infijo_espaciado_cadena
     
+    print("6")
     return "ERROR" 
    
 
@@ -73,10 +101,4 @@ def check_brackets(infijo):
                 return False    # desemparejado
     return stack.is_empty()     # devuleve verdadero si la pila esta vacia (todos emparejados)
 
-def dot(infijo):
-    """Devuelve falso si se introduce un decimal separado por coma"""
-    m=list(infijo)
-    #comprueba que la , no sea ningun elemento
-    if "," in m:
-        return False
-    
+ 
