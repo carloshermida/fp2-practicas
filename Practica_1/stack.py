@@ -16,7 +16,7 @@ class ArrayStack:
   """Implementación de LIFO Stack usando una lista de Python como almacenamiento subyacente."""
 
   def __init__(self):
-    """Crear una pila vacia."""
+    """Crear una pila vacia.""" 
     self._data = []                       # instancia de lista no pública
 
   def __len__(self):
