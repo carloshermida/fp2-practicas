@@ -34,31 +34,24 @@ def espaciador(infijo: str) -> str:
             actual = pila.peek()
             
             if anterior in numeros and (actual not in numeros and actual not in simbolos and actual not in delimitadores and actual != "."):
-                print("1")
                 return "ERROR"
             
             elif anterior in ["(", "[", "{"] and (actual not in delimitadores and actual not in numeros and actual not in simbolos and actual not in especial):
-                print("2")
                 return "ERROR"
             
             elif anterior in [")", "]", "}"] and (actual not in delimitadores and actual not in numeros):
-                print("2")
                 return "ERROR"
             
             elif anterior in ["+", "-", "/"] and actual not in numeros and actual not in delimitadores:
-                print("3")
                 return "ERROR"
             
             elif anterior == "*" and actual not in numeros and actual != "*" and actual not in delimitadores:
-                print("4")
                 return "ERROR"
            
             elif anterior == "." and actual not in numeros:
-                print("5")
                 return "ERROR"
             
             elif anterior in especial and actual not in delimitadores and actual not in simbolos:
-                print("4")
                 return "ERROR"
             
             if anterior in numeros and (actual in numeros or actual == "."):
@@ -82,7 +75,6 @@ def espaciador(infijo: str) -> str:
         print("\nINFIJO", "_"*(30-len("INFIJO")), infijo_espaciado_cadena)
         return infijo_espaciado_cadena
     
-    print("6")
     return "ERROR" 
    
 
