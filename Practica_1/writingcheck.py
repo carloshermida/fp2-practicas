@@ -63,7 +63,7 @@ def espaciador(infijo: str) -> str:
             if anterior == "*" and actual == "*":
                 infijo_espaciado_pila.pop()
             
-            if anterior == "-" and actual == "(":
+            if anterior == "-" and actual in ["(", "[", "{"]:
                 infijo_espaciado_pila.push("0")
                 infijo_espaciado_pila.push(" ")
              
