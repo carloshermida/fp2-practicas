@@ -73,4 +73,10 @@ def check_brackets(infijo):
                 return False    # desemparejado
     return stack.is_empty()     # devuleve verdadero si la pila esta vacia (todos emparejados)
 
- 
+def dot(infijo):
+    """Devuelve falso si se introduce un decimal separado por coma"""
+    m=list(infijo)
+    #comprueba que la , no sea ningun elemento
+    if "," in m:
+        return False
+    
