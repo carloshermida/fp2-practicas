@@ -10,4 +10,4 @@ from calculus import iniciar
 
 if __name__ == "__main__":
     
-    print(iniciar())
+    print("RESULTADO", "_"*(30-len("RESULTADO")), iniciar())
