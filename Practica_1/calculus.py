@@ -42,14 +42,15 @@ def operador_especial(op, num):
     
     elif op == "r":
         return sqrt(num)
+    
     elif op == "x":
-        return asin(num)
-    
+         return asin(num)
+
     elif op == "k":
-        return acos(num)
-    
+         return acos(num)
+
     elif op == "a":
-        return atan(num)
+         return atan(num)
 
 def iniciar(): 
     infijo = input("Introduce una expresion infija: ")
