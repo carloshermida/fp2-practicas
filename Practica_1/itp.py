@@ -13,7 +13,7 @@ def infixToPostfix(infixexpr):
     prec["t"], prec["c"], prec["s"], prec["r"] = 4, 4, 4, 4
     prec["*"] , prec["/"] = 3, 3
     prec["+"] , prec["-"] = 2, 2
-    prec["("] = 1
+    prec["("] , prec["["], prec["{"] = 1, 1, 1
     opStack = Stack()
     postfixList = []
     tokenList = infixexpr.split(" ")
@@ -28,11 +28,11 @@ def infixToPostfix(infixexpr):
         else:
             if token.isnumeric():
                 postfixList.append(token)
-            elif token == '(':
+            elif token == '(' or token == '[' or token == '{':
                 opStack.push(token)
-            elif token == ')':
+            elif token == ')' or token == ']' or token == '}':
                 topToken = opStack.pop()
-                while topToken != '(':
+                while topToken != '(' and topToken != '[' and topToken != '{':
                     postfixList.append(topToken)
                     topToken = opStack.pop()
             else:
