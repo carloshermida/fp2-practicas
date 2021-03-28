@@ -9,7 +9,7 @@ Modulo Calculos
 from writingcheck import espaciador, check_brackets
 from itp import infixToPostfix
 from stack import ArrayStack as Stack
-from math import tan, sin, cos, sqrt
+from math import tan, sin, cos, sqrt, asin, acos, atan
 
 def operador(op, num1, num2):
     if op == "+":
@@ -42,6 +42,14 @@ def operador_especial(op, num):
     
     elif op == "r":
         return sqrt(num)
+    elif op == "x":
+        return asin(num)
+    
+    elif op == "k":
+        return acos(num)
+    
+    elif op == "a":
+        return atan(num)
 
 def iniciar(): 
     infijo = input("Introduce una expresion infija: ")
@@ -53,7 +61,7 @@ def iniciar():
             print("POSTFIJO", "_"*(30-len("POSTFIJO")), postfijo)
             lista_postfijo = postfijo.split(" ")
             simbolos = ["+", "-", "*", "/", "**"]
-            especial = ["t", "c", "s", "r"]
+            especial = ["t", "c", "s", "r", "x", "k", "a"]
             pila = Stack()
     
             for item in lista_postfijo:

@@ -14,7 +14,7 @@ def espaciador(infijo: str) -> str:
     numeros = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     delimitadores = ["(", ")", "{", "}", "[", "]"]
     simbolos = ["+", "-", "*", "/"]
-    especial = ["t", "c", "s", "r"]
+    especial = ["t", "c", "s", "r", "x", "k", "a"]
     pila = Stack()
     infijo_espaciado_pila = Stack()
     # Comprobamos que el primer elemento no sea un operador o espacio
