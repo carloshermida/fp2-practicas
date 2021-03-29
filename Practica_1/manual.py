@@ -32,10 +32,10 @@ el usuario obtenga los resultados esperados.\n\n\
         - s() -> seno\n\
         - c() -> coseno\n\
         - t() -> tangente\n\
-        - x() -> arcseno\n\
-        - k() -> arccoseno\n\
-        - a() -> arctangente\n\
-        - r() -> raíz caudrada\n\n\
+        - x() -> arcoseno\n\
+        - k() -> arcocoseno\n\
+        - a() -> arcotangente\n\
+        - r() -> raíz cuadrada\n\n\
 \
     En el caso de números negativos, debe introducirlos siempre\n\
     entre paréntesis. Por ejemplo: (-3)\n\n\
@@ -46,6 +46,6 @@ el usuario obtenga los resultados esperados.\n\n\
     Si todo está correcto, transformará la expresión infija introducida en una \n\
     expresión infija espaciada. En el caso de números negativos, los cambiará por \n\
     una resta de 0 - x, siendo x el valor absoluto del número negativo introducido.\n\
-    Acto seguido, pasará la expresión a postfijo, tranformando los números decimales\n\
+    Acto seguido, pasará la expresión a postfijo, transformando los números decimales\n\
     en fracciones con el denominador múltiplo de 10 correspondiente. Finalmente, \n\
     realiza las operaciones en el orden especificado por el usuario.")
