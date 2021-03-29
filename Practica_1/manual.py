@@ -18,9 +18,12 @@ el usuario obtenga los resultados esperados.\n\n\
     espacios. Una vez escrito el cálculo que se quiere realizar,\n\
     pulsar la tecla enter.\n\n\
 \
+    Las operaciones básicas son: suma (+), resta (-), multiplicación (*),\n\
+    división (/) y elevado a (**).\n\n\
+\
     Hemos implementado una serie de códigos que identifican distintas\n\
-    operaciones. Para procesarlas correctamente, escriba por ejemplo: \n\
-    s(34). En este caso, el programa calculará el seno de 34.\n\n\
+    operaciones más complejas. Para procesarlas correctamente, escriba\n\
+    por ejemplo: s(34). En este caso, el programa calculará el seno de 34.\n\n\
 \
         - s() -> seno\n\
         - c() -> coseno\n\
