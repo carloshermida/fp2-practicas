@@ -14,7 +14,7 @@ if __name__ == "__main__":
     print("*"*20, "CALCULADORA", "*"*30, "\n\n1) Iniciar\n2) Manual de usuario")
     opcion = int(input("> "))
     
-    # Iniciar programa
+    # Iniciar el programa
     if opcion == 1:
         resultado = iniciar()
         if type(resultado) == float:
