@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Módulo Pila
+# Carlos Hermida / Clara Lado
+
 """
 Definición de las funciones
 de la clase pila.
