@@ -11,7 +11,9 @@ def infixToPostfix(infixexpr):
     """Devuelve el postfijo de una expresión infija correctamente
     espaciada. Tiene en cuenta el orden de prioridades."""
     prec = {}
-    prec["t"], prec["c"], prec["s"], prec["r"] = 4, 4, 4, 4
+    prec["t"], prec["c"], prec["s"], prec["r"] = 5, 5, 5, 5
+    prec["x"], prec["k"], prec["a"] = 5, 5, 5
+    prec["**"] = 4
     prec["*"] , prec["/"] = 3, 3
     prec["+"] , prec["-"] = 2, 2
     prec["("] , prec["["], prec["{"] = 1, 1, 1
