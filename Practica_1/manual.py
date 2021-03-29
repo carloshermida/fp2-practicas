@@ -36,10 +36,6 @@ el usuario obtenga los resultados esperados.\n\n\
     En el caso de números negativos, debe introducirlos siempre\n\
     entre paréntesis. Por ejemplo: (-3)\n\n\
 \
-    IMPORTANTE: Si se desea elevar una operación compleja descrita anteriormente\n\
-    debe ir entre paréntesis. Por ejemplo: t(2)**4 sería incorrecto, debe escribirse\n\
-    como (t(2))**4\n\n\
-\
 - Funcionamiento del programa:\n\n\
     Al introducir una expresión infija, el programa evaluará su correcta\n\
     escritura y devolverá un error si un requerimiento del usuario no se cumple.\n\
