@@ -3,25 +3,28 @@
 """
 Practica 1
 Carlos Hermida Clara Lado
-Main
 """
 
 from calculus import iniciar
+from manual import mostrar_manual
 
 if __name__ == "__main__":
     
+    # Menú Principal
     print("*"*20, "CALCULADORA", "*"*30, "\n\n1) Iniciar\n2) Manual de usuario")
     opcion = int(input("> "))
+    
+    # Iniciar programa
     if opcion == 1:
-        print("RESULTADO", "_"*(30-len("RESULTADO")), iniciar())
+        resultado = iniciar()
+        if type(resultado) == float:
+            print("RESULTADO", "_"*(30-len("RESULTADO")), resultado)
+        else:
+            print(resultado)
+    
+    # Manual de usuario
     elif opcion == 2:
-        print("="*35, "\n", "\t\tManual de usuario", "\n", "="*35, "\n", sep="")
-      
-        # Manual de usuario:
-        print("\
-Para calcular el resultado de una expresión debe escribirla\n\
-sin espacios.1")
-   
+        mostrar_manual()
     
     else:
-        print("Opción no válida")
+        print("ERROR / Opción no válida")

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Practica 1
-Carlos Hermida Clara Lado
-Modulo Infijo a Postfijo
+Definición de la función para convertir
+de infijo espaciado a postfijo.
 """
 
 from stack import ArrayStack as Stack
 
 def infixToPostfix(infixexpr):
+    """Devuelve el postfijo de una expresión infija correctamente
+    espaciada. Tiene en cuenta el orden de prioridades."""
     prec = {}
     prec["t"], prec["c"], prec["s"], prec["r"] = 4, 4, 4, 4
     prec["*"] , prec["/"] = 3, 3
@@ -20,6 +21,7 @@ def infixToPostfix(infixexpr):
     
 
     for token in tokenList:
+        # Transformamos un número decimal por la fracción de denominador múltiplo de 10 correspondiente
         if "." in token:
             decimal_lista = token.split(".")
             divisor = ("1"+"0"*len(decimal_lista[1]))

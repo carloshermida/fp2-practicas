@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Practica 1
-Carlos Hermida Clara Lado
-Modulo Pila
+Definicion de las funciones
+de la clase pila.
 """
-
-"""Definicion de las funciones de la clase pila"""
 
 class Empty(Exception):
   """Error intentando acceder a un elemento de un contenedor vacio."""

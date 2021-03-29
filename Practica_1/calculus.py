@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Practica 1
-Carlos Hermida Clara Lado
-Modulo Calculos
+Definición de las funciones encargadas de 
+realizar los cálculos y de la función principal.
 """
 
 from writingcheck import espaciador, check_brackets
@@ -12,6 +11,8 @@ from stack import ArrayStack as Stack
 from math import tan, sin, cos, sqrt, asin, acos, atan
 
 def operador(op, num1, num2):
+    """Devuelve el resultado de operaciones matemáticas básicas siendo
+    num1 y num2 los dos números y op el operador correspondiente."""
     if op == "+":
         return num1 + num2
     
@@ -26,11 +27,10 @@ def operador(op, num1, num2):
     
     elif op == "**":
         return num1**num2
-    
-    else:
-        return "Operando no valido"
 
 def operador_especial(op, num):
+    """Devuelve el resultado de operaciones matemáticas avanzadas siendo
+    num el número y op el código de operación definido en el manual de usuario."""
     if op == "t":
         return tan(num)
     
@@ -53,33 +53,58 @@ def operador_especial(op, num):
          return atan(num)
 
 def iniciar(): 
+    """Pide al usuario introducir una expresión infija, y devuelve
+    la expresión infija espaciada, la expresión postfija y el resultado
+    la operación. En caso de un inadecuado uso del programa, devuelve
+    el correspondiente error"""
     infijo = input("Introduce una expresion infija: ")
     
     if check_brackets(infijo):
         infijo = espaciador(infijo)
-        if infijo != "ERROR":
+        # Si espaciador no detecta errores de escritura, continua
+        
+        if not infijo.startswith("ERROR"):
+            # Convertimos el infijo espaciado a postfijo
             postfijo = infixToPostfix(infijo)
             print("POSTFIJO", "_"*(30-len("POSTFIJO")), postfijo)
+            # Dividimos el postfijo por espacios
             lista_postfijo = postfijo.split(" ")
             simbolos = ["+", "-", "*", "/", "**"]
             especial = ["t", "c", "s", "r", "x", "k", "a"]
             pila = Stack()
     
             for item in lista_postfijo:
+                # Añadimos todos los elementos a una pila
                 pila.push(item)
+                
+                # Si es un simbolo, realizamos la operacion deseada con los dos números anteriores
                 if item in simbolos:
                     op = pila.pop()
                     num2 = float(pila.pop())
+                    # En caso de división entre 0, devolvemos error
                     if op == "/" and num2 == 0:
-                        return "ERROR"
+                        return "ERROR / División entre cero"
                     num1 = float(pila.pop())
+                    # Cargamos en la pila el resultado
                     pila.push(float(operador(op, num1, num2)))
-                
+                    
+                # Si es un simbolo especial, realizamos la operacion deseada con el número anterior
                 if item in especial:
                     op = pila.pop()
                     num = float(pila.pop())
+                    # Cargamos en la pila el resultado
                     pila.push(float(operador_especial(op, num)))
-        
+                
+                # Si el simbolo pertenece a una operación no soportada, devolvemos error
+                if not item.isnumeric() and item not in especial and item not in simbolos:
+                    return("ERROR / Operación no soportada")
+            
+            # Devolvemos el resultado final
             return(pila.peek())
+        
+    else:
+        # Devuelve el error de check_brackets
+        return("ERROR / Delimitadores desemparejados")
     
-    return("Algo anda mal amigo")
+    # Devuelve un error de espaciador
+    return(infijo)
