@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Main
+# Carlos Hermida / Clara Lado
+
 """
-Práctica 1
-Carlos Hermida / Clara Lado
+Código principal de la Práctica 1.
+Contiene el menú principal.
 """
 
 from calculus import iniciar
