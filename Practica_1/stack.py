@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Definicion de las funciones
+Definición de las funciones
 de la clase pila.
 """
 
 class Empty(Exception):
-  """Error intentando acceder a un elemento de un contenedor vacio."""
+  """Error intentando acceder a un elemento de un contenedor vacío."""
   pass
 
 class ArrayStack:
   """Implementación de LIFO Stack usando una lista de Python como almacenamiento subyacente."""
 
   def __init__(self):
-    """Crear una pila vacia.""" 
+    """Crear una pila vacía.""" 
     self._data = []                       # instancia de lista no pública
 
   def __len__(self):
@@ -21,7 +21,7 @@ class ArrayStack:
     return len(self._data)
 
   def is_empty(self):
-    """Devuelve verdadero si la pila esta vacia."""
+    """Devuelve verdadero si la pila esta vacía."""
     return len(self._data) == 0
 
   def push(self, e):
@@ -31,17 +31,17 @@ class ArrayStack:
   def peek(self):
     """Devuelve (pero no elimina) el elemento de la parte superior de la pila.
 
-    Raise Empty exception si la pila esta vacia.
+    Raise Empty exception si la pila esta vacía.
     """
     if self.is_empty():
-      raise Empty('Pila vacia')
+      raise Empty('Pila vacía')
     return self._data[-1]                 # el ultimo elemento de la lista
 
   def pop(self):
     """Elimina y devuelve el elemento de la parte superior de la pila (i.e., LIFO).
 
-    Raise Empty exception si la pila esta vacia.
+    Raise Empty exception si la pila esta vacía.
     """
     if self.is_empty():
-      raise Empty('Pila vacia')
+      raise Empty('Pila vacía')
     return self._data.pop()               # elimina el ultimo elemento de la lista
