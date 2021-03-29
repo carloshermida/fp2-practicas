@@ -36,7 +36,7 @@ def infixToPostfix(infixexpr):
                 topToken = opStack.pop()
                 while topToken != '(' and topToken != '[' and topToken != '{':
                     postfixList.append(topToken)
-                    topToken = opStack.pop()
+                    topToken = opStack.pop() 
             else:
                 while (not opStack.is_empty()) and (prec[opStack.peek()] >= prec[token]):
                     postfixList.append(opStack.pop())
