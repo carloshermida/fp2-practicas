@@ -56,7 +56,7 @@ def iniciar():
     """Pide al usuario introducir una expresión infija, y devuelve
     la expresión infija espaciada, la expresión postfija y el resultado
     la operación. En caso de un inadecuado uso del programa, devuelve
-    el correspondiente error"""
+    el correspondiente error."""
     infijo = input("Introduce una expresión infija: ")
     
     if check_brackets(infijo):
