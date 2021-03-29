@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Módulo Infijo a Postfijo
+# Carlos Hermida / Clara Lado
+
 """
 Definición de la función para convertir
 de infijo espaciado a postfijo.
