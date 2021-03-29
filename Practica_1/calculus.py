@@ -57,7 +57,7 @@ def iniciar():
     la expresión infija espaciada, la expresión postfija y el resultado
     la operación. En caso de un inadecuado uso del programa, devuelve
     el correspondiente error"""
-    infijo = input("Introduce una expresion infija: ")
+    infijo = input("Introduce una expresión infija: ")
     
     if check_brackets(infijo):
         infijo = espaciador(infijo)
@@ -77,7 +77,7 @@ def iniciar():
                 # Añadimos todos los elementos a una pila
                 pila.push(item)
                 
-                # Si es un simbolo, realizamos la operacion deseada con los dos números anteriores
+                # Si es un símbolo, realizamos la operación deseada con los dos números anteriores
                 if item in simbolos:
                     op = pila.pop()
                     num2 = float(pila.pop())
@@ -88,7 +88,7 @@ def iniciar():
                     # Cargamos en la pila el resultado
                     pila.push(float(operador(op, num1, num2)))
                     
-                # Si es un simbolo especial, realizamos la operacion deseada con el número anterior
+                # Si es un simbolo especial, realizamos la operación deseada con el número anterior
                 if item in especial:
                     op = pila.pop()
                     num = float(pila.pop())
