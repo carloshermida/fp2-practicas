@@ -11,7 +11,7 @@ from manual import mostrar_manual
 if __name__ == "__main__":
     
     # Menú Principal
-    print("*"*20, "CALCULADORA", "*"*30, "\n\n1) Iniciar\n2) Manual de usuario")
+    print("*"*20, "CALCULADORA", "*"*20, "\n\n1) Iniciar\n2) Manual de usuario")
     opcion = int(input("> "))
     
     # Iniciar el programa
