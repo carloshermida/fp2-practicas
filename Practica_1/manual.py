@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Módulo Manual
+# Carlos Hermida / Clara Lado
+
 """
 Contiene el manual de usuario que 
 permite el correcto uso del programa.
