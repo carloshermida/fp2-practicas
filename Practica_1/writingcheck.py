@@ -64,7 +64,7 @@ def espaciador(infijo: str) -> str:
             if anterior == "*" and actual == "*":
                 infijo_espaciado_pila.pop()
             
-            # Transformamos un númeor negativo por la resta de 0 - (el valor absoluto del número)
+            # Transformamos un número negativo por la resta de 0 - (el valor absoluto del número)
             if anterior == "-" and actual in ["(", "[", "{"]:
                 infijo_espaciado_pila.push("0")
                 infijo_espaciado_pila.push(" ")
