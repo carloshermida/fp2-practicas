@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Módulo Cálculos
+# Carlos Hermida / Clara Lado
+
 """
 Definición de las funciones encargadas de 
 realizar los cálculos y de la función principal.
