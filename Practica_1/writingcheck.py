@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Módulo Comprobaciones
+# Carlos Hermida / Clara Lado
+
 """
 Definición de las funciones encargadas de 
 verificar la correcta escritura del infijo.
