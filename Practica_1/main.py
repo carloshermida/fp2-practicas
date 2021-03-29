@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Practica 1
-Carlos Hermida Clara Lado
+Práctica 1
+Carlos Hermida / Clara Lado
 """
 
 from calculus import iniciar
