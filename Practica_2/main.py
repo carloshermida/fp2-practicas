@@ -9,17 +9,20 @@ Código principal de la Práctica 2.
 """
 
 import sys
-import array_queue
+from array_queue import ArrayQueue as Queue
 import random
 
+#creo una cola vacia para cada vacuna, perdon no se crear colaas
+dosis_a = Queue() #para mayores de 70
+dosis_b = Queue() #para entre 50 y 70
+dosis_c = Queue() #para menores de 50
+pacientes = Queue()
+espera = Queue()
+
 def llegadadosis(x, y, z):
-#"""
-#Funcion encargada de dar un numero de vacunas de cada tipo
-#"""
-    #creo una cola vacia para cada vacuna, perdon no se crear colaas
-    dosis_a = __init__() #para mayores de 70
-    dosis_b = __init__() #para entre 50 y 70
-    dosis_c = __init__() #para menores de 50
+    """Funcion encargada de dar un numero
+    de vacunas de cada tipo."""
+   
     #hago un bucle para que cada cola se llene del numero de vacunas llegadas
     for i in range(x):
         dosis_a.enqueue(1)
@@ -33,20 +36,51 @@ def llegadadosis(x, y, z):
 def personas(p):
    #intento crear una cola de personas con edades aleatorias
    
-   a=random.randint(1, 100)
+   for i in range(p):
+       pacientes.enqueue(random.randint(1, 100))
 
-def seleccionadorvacuna(edad):
-    #creo una funcion en la que se le introducira la edad de la persona y esta dira que vacuna le toca
-    #el parametro a es la edad que estaria en la pila
-    if edad < 50:
-      dosis_c.dequeue()
-      #elimino una vacuna de tipo c
-    elif eda=>50 and edad<=70:
-         dosis_b.dequeue()
-    else:
-         dosis_a.dequeue()
+def seleccionadorvacuna(pacientes):
+
+    for i in range(len(pacientes)): 
+        
+        paciente = pacientes.first()
+        
+        if paciente < 50:
+            if dosis_c.is_empty():
+                espera.enqueue(paciente)
+                print("NO HAY C")
+            else:  
+                print("JOVEN VACUNADO")
+                dosis_c.dequeue()
+            pacientes.dequeue()
+               
+            
+        elif paciente>=50 and paciente<=70:
+            if dosis_b.is_empty():
+                espera.enqueue(paciente)
+                print("NO HAY B")
+            else:  
+                print("ADULTO VACUNADO")
+                dosis_b.dequeue()
+            pacientes.dequeue()
+        
+        else:
+            if dosis_a.is_empty():
+                espera.enqueue(paciente)
+                print("NO HAY A")
+            else:  
+                print("VIEJO VACUNADO")
+                dosis_a.dequeue()
+            pacientes.dequeue()
          
          
 if __name__ == "__main__":
    
-    print("sys: ", sys.argv)
+    llegadadosis(10,10,10)
+    personas(30)
+    seleccionadorvacuna(pacientes)
+    
+    print("ESPERA")
+    for i in range(len(espera)): 
+        
+        print(espera.dequeue())
