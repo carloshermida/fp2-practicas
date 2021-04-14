@@ -30,6 +30,7 @@ def llegadadosis(x, y, z, dosis_a, dosis_b, dosis_c):
     for i in range(z):
         dosis_c.enqueue(1)
 
+    
 def llegadapersonas(npers, pacientes):
    """Funcion encargada de crear la cola de gente de edades aleatorias uniformemente"""
    #creo una cola de personas con edades aleatorias
