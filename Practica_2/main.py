@@ -43,9 +43,11 @@ def main():
     finally:
         print("RESUMEN FINAL:\n\n\tJOVENES VACUNADOS: {}\n\tJOVENES NO VACUNADOS: {}\n\t\
 ADULTOS VACUNADOS: {}\n\tADULTOS NO VACUNADOS: {}\n\tANCIANOS VACUNADOS: {}\n\t\
-ANCIANOS NO VACUNADOS: {}\n\n\tTOTAL VACUNADOS: {}\n\tTOTAL NO VACUNADOS: {}".format(resumen_final[0],
+ANCIANOS NO VACUNADOS: {}\n\n\tTOTAL VACUNADOS: {}\n\tTOTAL NO VACUNADOS: {}\n\n\t\
+VACUNAS SOBRANTES:\n\t\tA: {}\n\t\tB: {}\n\t\tC: {}".format(resumen_final[0],
 resumen_final[1],resumen_final[2], resumen_final[3],resumen_final[4],resumen_final[5],
-(resumen_final[0]+resumen_final[2]+resumen_final[4]), (resumen_final[1]+resumen_final[3]+resumen_final[5])))
+(resumen_final[0]+resumen_final[2]+resumen_final[4]), (resumen_final[1]+resumen_final[3]+resumen_final[5]),
+len(dosis_a), len(dosis_b), len(dosis_c)))
          
 
 if __name__ == "__main__":
