@@ -83,7 +83,7 @@ def seleccionadorvacuna(dosis_a, dosis_b, dosis_c, pacientes, day, resumen_final
     print("RESUMEN DIA {}:\n\n\tJOVENES VACUNADOS: {}\n\tJOVENES NO VACUNADOS: {}\n\t\
 ADULTOS VACUNADOS: {}\n\tADULTOS NO VACUNADOS: {}\n\t\
 ANCIANOS VACUNADOS: {}\n\tANCIANOS NO VACUNADOS: {}\n".format(day, resumen[0], resumen[1],
-    resumen[2], resumen[3],resumen[4],resumen[5]))
+resumen[2], resumen[3],resumen[4],resumen[5]))
     
     
     #RESUMEN FINAL
