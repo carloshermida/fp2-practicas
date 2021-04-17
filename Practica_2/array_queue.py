@@ -41,7 +41,6 @@ class ArrayQueue:
 
   def dequeue(self):
     """Remove and return the first element of the queue (i.e., FIFO).
-
     Raise Empty exception if the queue is empty.
     """
     if self.is_empty():
