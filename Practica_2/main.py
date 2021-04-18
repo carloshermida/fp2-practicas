@@ -18,7 +18,7 @@ def main():
     """ Función principal encargada de obtener los parámetros
     del usuario y ejecutar el código tantas veces como días de simulación """
     
-    # Leemos los argumentos de entrada
+    # Leemos los argumentos de entrada 
     personas_dia = int(sys.argv[1])
     days = int(sys.argv[2])
     choose = str(sys.argv[3])
