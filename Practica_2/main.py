@@ -27,9 +27,13 @@ def main():
     # Tipos de vacunas
     #-------------------------------------------------------------------------
     # vac_"nombre" = Vacuna("Nombre", limite_inferior, limite_superior, entrada diaria)
-    vac_a = Vacuna("a", 71, 101, int(sys.argv[4]))
+    vac_a = Vacuna("a", 71, 100, int(sys.argv[4]))
     vac_b = Vacuna("b", 50, 70, int(sys.argv[5]))
     vac_c = Vacuna("c", 0, 49, int(sys.argv[6]))
+    
+    #Vacuna "d" añadida para experimento:
+    #vac_d = Vacuna("d", 85, 100, int(sys.argv[7]))
+    #vac_a = Vacuna("a", 71, 84, int(sys.argv[4]))
     #-------------------------------------------------------------------------
     
     vac_lista = []
