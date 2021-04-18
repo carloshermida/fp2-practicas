@@ -10,7 +10,7 @@ Código principal de la Práctica 2.
 
 import sys
 from stockist import seleccionadorvacuna
-from add import llegadadosis, llegadapersonas
+from add import llegadadosis, selector_muestreo
 from array_queue import ArrayQueue as Queue
 from categories import Vacuna
 
@@ -21,13 +21,15 @@ def main():
     # Leemos los argumentos de entrada
     personas_dia = int(sys.argv[1])
     days = int(sys.argv[2])
+    choose = str(sys.argv[3])
     
     #-------------------------------------------------------------------------
     # Tipos de vacunas
     #-------------------------------------------------------------------------
-    vac_a = Vacuna("a", 71, 101, int(sys.argv[3]), 0, 0, 0)
-    vac_b = Vacuna("b", 50, 70, int(sys.argv[4]), 0, 0, 0)
-    vac_c = Vacuna("c", 0, 49, int(sys.argv[5]), 0, 0, 0)
+    # vac_"nombre" = Vacuna("Nombre", limite_inferior, limite_superior, entrada diaria)
+    vac_a = Vacuna("a", 71, 101, int(sys.argv[4]))
+    vac_b = Vacuna("b", 50, 70, int(sys.argv[5]))
+    vac_c = Vacuna("c", 0, 49, int(sys.argv[6]))
     #-------------------------------------------------------------------------
     
     vac_lista = []
@@ -52,8 +54,8 @@ def main():
     
     # Si hay más o menos argumentos de los requeridos según la cantidad de vacunas,
     # el programa se cerrará
-    if len(sys.argv) != (len(vac_lista) + 3):
-        print("Formato:\n<Personas nuevas / día>\n<Días>\n<Cantidad Vacuna A / día>\n<Cantidad Vacuna B / día>\n<Cantidad Vacuna C / día> ...")
+    if len(sys.argv) != (len(vac_lista) + 4):
+        print("Formato:\n<Personas nuevas / día>\n<Días>\n<Muestreo>\n<Cantidad Vacuna A / día>\n<Cantidad Vacuna B / día>\n<Cantidad Vacuna C / día> ...")
         sys.exit()
        
     # Comenzamos el bucle en el día 1, hasta el día especificado por el usuario    
@@ -71,14 +73,12 @@ def main():
         # poder mandarle los parámetros de todas las vacunas y dosis.
         eval("llegadadosis" + "({})".format(cadena_var))
         # Generamos personas con edades aleatorias
-        llegadapersonas(personas_dia, pacientes)
+        selector_muestreo(personas_dia, pacientes, choose)
         # Procedemos de la misma forma que con la función llegadadosis,
         # aunque en este caso añadimos 3 parametros fijos que se mandarán
         # a la función seleccionadorvacuna si importar el número de vacunas
         eval("seleccionadorvacuna" + "(pacientes, day, days, {})".format(cadena_var))
 
-
-    
 if __name__ == "__main__":
     
     main()
