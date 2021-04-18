@@ -10,11 +10,9 @@ vacunas, personas
 """
 from categories import Vacuna
 from array_queue import ArrayQueue as Queue
-import random
+from sample import distribucion_aleatoria, distribucion_galicia
+import sys
 
-dosis_a = Queue()
-dosis_b = Queue()
-dosis_c = Queue()
 pacientes = Queue()
 
 def llegadadosis(*arg):
@@ -48,13 +46,15 @@ def llegadadosis(*arg):
    
     
     
-def llegadapersonas(personas_dia, pacientes):
-
-   """Funcion encargada de crear la cola de
-   gente de edades aleatorias uniformemente."""
+def selector_muestreo(personas_dia, pacientes, choose):
+   """Funcion encargada de seleccionar el muestreo"""
    
-   # Creamos una cola de personas con edades aleatorias
-   for i in range(personas_dia):
-       pacientes.enqueue(random.randint(0, 100))
-
-    # aqui hay que hacer camios para implementar sample.py
+   if choose == "U" or choose == "u":
+       distribucion_aleatoria(personas_dia, pacientes)
+   
+   elif choose == "G" or choose == "g":
+       distribucion_galicia(personas_dia, pacientes)
+       
+   else:
+       print("Muestreo no válido")
+       sys.exit()
