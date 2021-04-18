@@ -15,17 +15,20 @@ class Vacuna:
     # Creamos una lista con todos los nombres de la vacunas cradas a partir de esta clase
     lista_vacunas = []
     
-    def __init__(self, nombre, lim_inf, lim_sup, entrada_diaria, stock, vacunados, no_vacunados):
+    def __init__(self, nombre, lim_inf, lim_sup, entrada_diaria):
         """Crea una nueva vacuna"""
         self.nombre = nombre
         self.lim_inf = lim_inf
         self.lim_sup = lim_sup
-        self.stock = stock
-        self.vacunados = vacunados
-        self.no_vacunados = no_vacunados
+        self.stock = 0
+        self.vacunados = 0
+        self.no_vacunados = 0
         self.entrada_diaria = entrada_diaria
+        self.vacunados_total = 0
         # Cada vez que se inicializa, añade a la lista el nombre de la vacuna
         Vacuna.lista_vacunas.append(self.nombre)
+        self.lista_diaria_vac = []
+        self.lista_diaria_no_vac = []
         
     def getNombre(self):
         """Devuelve el nombre"""
@@ -44,7 +47,7 @@ class Vacuna:
         return self.stock
     
     def getVacunados(self):
-        """Devuelve el número de vacunados"""
+        """Devuelve el número de vacunados diario"""
         return self.vacunados
     
     def getEntrada(self):
@@ -56,16 +59,37 @@ class Vacuna:
         self.stock = stock
     
     def setVacunados(self, vacunados):
-        """Establece el número de vacunados"""
+        """Establece el número de vacunados diario"""
         self.vacunados = vacunados
         
     def setNoVacunados(self, no_vacunados):
-        """Establece el número de no vacunados"""
+        """Establece el número de no vacunados diario"""
         self.no_vacunados = no_vacunados
     
     def getNoVacunados(self):
-        """Devuelve el número de no vacunados"""
+        """Devuelve el número de no vacunados diario"""
         return self.no_vacunados
     
+    def getVacunados_total(self):
+        """Devuelve el número de vacunados total"""
+        return self.vacunados_total
     
-
+    def setVacunados_total(self, vacunados_total):
+        """Establece el número de vacunados total"""
+        self.vacunados_total = vacunados_total
+    
+    def set_lista_vac(self, x):
+        """Guarda en una lista los vacunados de cada día"""
+        self.lista_diaria_vac.append(x)
+    
+    def set_lista_no_vac(self, x):
+        """Guarda en una lista los no vacunados de cada día"""
+        self.lista_diaria_no_vac.append(x)
+        
+    def get_lista_vac(self):
+        """Devuelve una lista los vacunados de cada día"""
+        return self.lista_diaria_vac
+    
+    def get_lista_no_vac(self):
+        """Devuelve en una lista los no vacunados de cada día"""
+        return self.lista_diaria_no_vac
