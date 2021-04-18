@@ -11,10 +11,8 @@ repartir según la edad y cantidad de dosis
 
 from array_queue import ArrayQueue as Queue
 from categories import Vacuna
+import numpy as np
 
-dosis_a = Queue()
-dosis_b = Queue()
-dosis_c = Queue()
 pacientes = Queue()
 
 def seleccionadorvacuna(*arg):
@@ -39,12 +37,17 @@ def seleccionadorvacuna(*arg):
     vac_lista = []
     dosis_lista = []
     i = 3
-    
+        
     # Creamos una lista de vacunas y otra lista de dosis
     while i < len(var):
         vac_lista.append(var[i])
         dosis_lista.append(var[i+1])
         i += 2
+    
+    # Inicializamos la cantidad de vacunados y no vacunados diarios
+    for vac in vac_lista:
+        vac.setVacunados(0)
+        vac.setNoVacunados(0)
     
     # Ejecutamos el bucle por cada paciente que haya en este día
     for i in range(len(pacientes)): 
@@ -76,18 +79,23 @@ def seleccionadorvacuna(*arg):
                 # intentarlo el próximo día
                 else:
                     pacientes.enqueue(paciente)
-                    # Si es el último día, no podrá intentarlo el día siguiente,
-                    # por lo que quedará sin vacunar
-                    if day == days:
-                        vac.setNoVacunados(vac.getNoVacunados() + 1)
-                # Se haya vaunado o no, lo eliminamos del principio de la cola de pacientes
+                    vac.setNoVacunados(vac.getNoVacunados() + 1)
+                # Se haya vacunado o no, lo eliminamos del principio de la cola de pacientes
                 pacientes.dequeue()
-            
-   
+    
+    
+    # Actualizamos el contador global y las listas para la media y desviacion típica
+    for vac in vac_lista:
+        vac.setVacunados_total(vac.getVacunados_total()+vac.getVacunados())
+        vac.set_lista_vac(vac.getVacunados())
+        vac.set_lista_no_vac(vac.getNoVacunados())
+    
+    
+    
     # Si es el último día, mostramos el resumen
     if day == days:
-        
-        print("RESUMEN:\n\n")
+
+        print("-"*30, "\n\t\tRESUMEN\n","-"*30, "\n\n", sep="")
         
         total_vac = 0
         total_no_vac = 0
@@ -95,11 +103,12 @@ def seleccionadorvacuna(*arg):
         # Mostramos las estadísticas para cada vacuna
         
         for vac in vac_lista:
-
-            print("\t{} VACUNADOS: {}\n\t{} NO VACUNADOS: {}"
-                  .format(vac.getNombre(), vac.getVacunados(), vac.getNombre(), vac.getNoVacunados()))
+            print("\t{} VACUNADOS: {} \tMEDIA: {} \tDESVIACIÓN TÍPICA: {}\n\t{} NO VACUNADOS: {}\
+ \tMEDIA: {} \tDESVIACIÓN TÍPICA: {}\n".format(vac.getNombre(), vac.getVacunados_total(),
+round(np.mean(vac.get_lista_vac())), round(np.std(vac.get_lista_vac())), vac.getNombre(), vac.getNoVacunados(),
+round(np.mean(vac.get_lista_no_vac())),round(np.std(vac.get_lista_no_vac()))))
             
-            total_vac += vac.getVacunados()
+            total_vac += vac.getVacunados_total()
             total_no_vac += vac.getNoVacunados()
             
         print("\n\n\tTOTAL VACUNADOS: {}\n\tTOTAL NO VACUNADOS: {}".format(total_vac, total_no_vac))
