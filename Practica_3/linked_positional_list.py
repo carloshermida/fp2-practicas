@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Módulo Clase Linked positional list
+# Carlos Hermida / Clara Lado
+
+"""
+Definición de la clase 
+linked positional list
+"""
+
 # Copyright 2019, Profesorado de Fundamentos de Programación II
 #                 Grado en Ciencia e Ingeniería de Datos
 #                 Facultade de Informática
