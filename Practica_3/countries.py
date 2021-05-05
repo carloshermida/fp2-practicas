@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Paises
+# Módulo Clase Paises
 # Carlos Hermida / Clara Lado
 
 """
@@ -16,7 +16,6 @@ class country:
         """Crea un nuevo pais"""
         self.nombre = nombre
         self.puntos = 0
-        self.voted = False
     
     def getNombre(self):
         """Devuelve el nombre"""
@@ -29,12 +28,5 @@ class country:
     def getPuntos(self):
         """Devuelve los puntos"""
         return self.puntos
-    
-    def setVoted(self, voted):
-        """Indica si ya ha votado"""
-        self.voted = voted
-        
-    def getVoted(self):
-        """Devuelve si ya ha votado"""
-        return self.voted
+     
  
