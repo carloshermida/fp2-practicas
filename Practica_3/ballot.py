@@ -12,7 +12,14 @@ import random
 from array_positional_list import ArrayPositionalList as positionallist
 from linked_positional_list import LinkedPositionalList
 
-
+def print_list(opl):
+    """ Show a positional list in a terminal. """
+    print("[", end=" ")
+    for x in opl:
+        print("{} [{}]".format(x.getNombre(), x.getPuntos()), end=" ")
+    print("]")
+    
+    
 
 def votacion(lista_orden):
     """Función que simulará todo el proceso de la votación"""
@@ -33,6 +40,7 @@ def votacion(lista_orden):
         validos.pop(i)
         #creo otra lista para los seleccionados a los que les tocaron los votos de forma aleatoria
         votos_seguros = []
+        ronda_votacion = []
         #creo un bucle para que se repita 10 veces, numero de votos que tendrá que repartir cada país
         
         for numero in range(10):
@@ -40,9 +48,12 @@ def votacion(lista_orden):
             a = random.choice(validos)
             #lo añado a la lista de afortunados
             votos_seguros.append(a)
+            ronda_votacion.append(a)
             #lo elimino de la lista anterior ya que no podre volver a votarle otra vez
             validos.remove(a)
+        
             
+        #REPARTO DE PUNTOS
         cnt = 1
         x = 12
         for w in range(len(votos_seguros)):
@@ -62,13 +73,45 @@ def votacion(lista_orden):
         
         #RANKING
         
+        for country in ronda_votacion:
+            
+            puntos_votado = country.getPuntos()
+            
+            if ranking.is_empty():
+                ranking.add_first(country)
+
+            else:
+                cnt_tmp = 0
+                for pais_tmp in ranking:
+                    if pais_tmp == country:
+                        ranking.delete(cnt_tmp)
+                        break
+                    cnt_tmp += 1
+                
+                
+                # ORDENASION
+                cnt = 0
+                y = 0
+                for pais in ranking:
+                    
+                    if puntos_votado <= pais.getPuntos():
+                        ranking.add_before(cnt, country)
+                        y = 1
+                        break
+                    
+                    cnt += 1
+                
+                if y == 0:
+                    ranking.add_last(country)
         
-        
-        
-        
+            print_list(ranking)
+            print("-"*30)
+            
         # FIN BUCLE VOTACIONES
         print("*"*50)
      
         
     for i in range(len(lista_orden)):
         print(lista_orden[i].getNombre(), lista_orden[i].getPuntos())
+        
+    print_list(ranking)
