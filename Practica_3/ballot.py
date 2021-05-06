@@ -76,6 +76,7 @@ def votacion(lista_orden):
             
                 puntos_votado = country.getPuntos()
             
+            
                 if ranking.is_empty():
                     ranking.add_first(country)
 
@@ -93,7 +94,7 @@ def votacion(lista_orden):
                     y = 0
                     for pais in ranking:
                     
-                        if puntos_votado <= pais.getPuntos():
+                        if puntos_votado >= pais.getPuntos():
                             ranking.add_before(cnt, country)
                             y = 1
                             break
