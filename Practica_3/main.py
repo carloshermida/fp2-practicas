@@ -31,8 +31,25 @@ def inicio_participantes():
 def inicio_participantes_2():
     """Función que creara una lista de participantes"""
     
-    lista_paises = ["España","Australia","Francia","Inglaterra","Portugal","Belgica","Israel","Suiza","Holanda","Chipre","Rusia","Montenegro","Bielorrusia","Noruega","Alemania"]
-    for i in range(15):
+    fundadores = ["Holanda", "Alemania", "Italia", "España", "Francia", "Inglaterra"]
+    candidatos = [ "Lituania", "Eslovenia", "Rusia", "Suecia", "Australia", "Macedonia",
+                    "Irlanda", "Chipre", "Noruega", "Croacia", "Belgica", "Israel", "Rumania",
+                    "Azerbaiyan", "Ucrania", "Malta", "Bielorrusia", "San_Marino", "Estonia",
+                    "Republica_Checa", "Grecia", "Austria", "Polonia", "Moldavia", "Islandia",
+                    "Serbia", "Georgia", "Albania", "Portugal", "Bulgaria", "Finlandia", "Letonia",
+                    "Suiza", "Dinamarca", "Armenia"]
+
+    lista_paises = fundadores
+    for i in range(random.randint(9, 19)):
+        afortunado = random.choice(candidatos)
+        lista_paises.append(afortunado)
+        candidatos.remove(afortunado)
+        
+    print(lista_paises)
+          
+        
+    for i in range(len(lista_paises)):
+        
         name = lista_paises[0]
         globals()[name] = country(name)
         lista_paises.append(globals()[name])
@@ -52,4 +69,5 @@ if __name__ == "__main__":
     print(lista)
     print("-"*30)
     votacion(lista)
-    print("fin")
+    
+    
