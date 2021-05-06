@@ -48,70 +48,66 @@ def votacion(lista_orden):
             a = random.choice(validos)
             #lo añado a la lista de afortunados
             votos_seguros.append(a)
-            ronda_votacion.append(a)
             #lo elimino de la lista anterior ya que no podre volver a votarle otra vez
             validos.remove(a)
         
             
         #REPARTO DE PUNTOS
-        cnt = 1
+        cnt_points = 1
         x = 12
         for w in range(len(votos_seguros)):
             
             votos_seguros[0].setPuntos(votos_seguros[0].getPuntos()+x)
-            
-            if cnt < 3:
+            print(votos_seguros[0].getNombre(), x)
+            ronda_votacion.append(votos_seguros[0])
+            if cnt_points < 3:
                 x += -2
             else:
                 x += -1
             
-            print(votos_seguros[0].getNombre(), votos_seguros[0].getPuntos())
             votos_seguros.pop(0)
-            cnt += 1 
+            cnt_points += 1 
         
         
         
-        #RANKING
+            #RANKING
         
-        for country in ronda_votacion:
+            for country in ronda_votacion:
             
-            puntos_votado = country.getPuntos()
+                puntos_votado = country.getPuntos()
             
-            if ranking.is_empty():
-                ranking.add_first(country)
+                if ranking.is_empty():
+                    ranking.add_first(country)
 
-            else:
-                cnt_tmp = 0
-                for pais_tmp in ranking:
-                    if pais_tmp == country:
-                        ranking.delete(cnt_tmp)
-                        break
-                    cnt_tmp += 1
+                else:
+                    cnt_tmp = 0
+                    for pais_tmp in ranking:
+                        if pais_tmp == country:
+                            ranking.delete(cnt_tmp)
+                            break
+                        cnt_tmp += 1
                 
                 
-                # ORDENASION
-                cnt = 0
-                y = 0
-                for pais in ranking:
+                    # ORDENASION
+                    cnt = 0
+                    y = 0
+                    for pais in ranking:
                     
-                    if puntos_votado <= pais.getPuntos():
-                        ranking.add_before(cnt, country)
-                        y = 1
-                        break
+                        if puntos_votado <= pais.getPuntos():
+                            ranking.add_before(cnt, country)
+                            y = 1
+                            break
                     
-                    cnt += 1
+                        cnt += 1
                 
-                if y == 0:
-                    ranking.add_last(country)
+                    if y == 0:
+                        ranking.add_last(country)
         
             print_list(ranking)
             print("-"*30)
             
-        # FIN BUCLE VOTACIONES
-        print("*"*50)
      
         
-    for i in range(len(lista_orden)):
-        print(lista_orden[i].getNombre(), lista_orden[i].getPuntos())
-        
+
+    print("\nFINAL:\n")  
     print_list(ranking)
