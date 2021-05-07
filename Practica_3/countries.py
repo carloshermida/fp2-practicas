@@ -28,5 +28,4 @@ class country:
     def getPuntos(self):
         """Devuelve los puntos"""
         return self.puntos
-     
  
