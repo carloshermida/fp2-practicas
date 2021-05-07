@@ -10,7 +10,7 @@ de llevar a cabo la votación
 """
 import random
 from array_positional_list import ArrayPositionalList as positionallist
-from linked_positional_list import LinkedPositionalList
+#from linked_positional_list import LinkedPositionalList as positionallist
 
 def print_list(opl):
     """ Show a positional list in a terminal. """
@@ -21,7 +21,7 @@ def print_list(opl):
     
     
 
-def votacion(lista_orden):
+def votacion(lista_orden, simulacion, demo):
     """Función que simulará todo el proceso de la votación"""
     
     ranking = positionallist()
@@ -29,8 +29,10 @@ def votacion(lista_orden):
     #creo un bucle que se repita tantas veces como concursantes haya
     for i in range(len(lista_orden)): #15
         
-        print("VOTACIÓN: ", i+1)
-        print("VOTA: ", lista_orden[i].getNombre(), "\n")
+        if simulacion == demo:
+            print("\n","*"*50, "\n\nSIMULACIÓN Nº", simulacion, sep= "")
+            print("VOTACIÓN: ", i+1)
+            print("VOTA: ", lista_orden[i].getNombre(), "\nREPARTO:\n")
         #creo otra lista donde estaran el resto de participantes menos al que le toca votar para que entre ellos repartan sus puntos
         validos = []
         for pais in lista_orden:
@@ -58,7 +60,9 @@ def votacion(lista_orden):
         for w in range(len(votos_seguros)):
             
             votos_seguros[0].setPuntos(votos_seguros[0].getPuntos()+x)
-            print(votos_seguros[0].getNombre(), x)
+            if simulacion == demo:    
+                print("-"*30, sep="")
+                print(votos_seguros[0].getNombre(), x)
             ronda_votacion.append(votos_seguros[0])
             if cnt_points < 3:
                 x += -2
@@ -104,11 +108,14 @@ def votacion(lista_orden):
                     if y == 0:
                         ranking.add_last(country)
         
-            print_list(ranking)
-            print("-"*30)
+            if simulacion == demo:
+                print_list(ranking)
             
      
         
-
-    print("\nFINAL:\n")  
-    print_list(ranking)
+    if simulacion == demo:
+        print("\n", "*"*50, sep="")
+        print("\nRESULTADO FINAL:\n")  
+        print_list(ranking)
+    
+    return ranking
