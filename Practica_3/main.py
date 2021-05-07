@@ -31,21 +31,20 @@ def inicio_participantes():
 def inicio_participantes_2():
     """Función que creara una lista de participantes"""
     
-    fundadores = ["Holanda", "Alemania", "Italia", "España", "Francia", "Inglaterra"]
+    big_five = ["Alemania", "Italia", "España", "Francia", "Inglaterra"]
     candidatos = [ "Lituania", "Eslovenia", "Rusia", "Suecia", "Australia", "Macedonia",
                     "Irlanda", "Chipre", "Noruega", "Croacia", "Belgica", "Israel", "Rumania",
                     "Azerbaiyan", "Ucrania", "Malta", "Bielorrusia", "San_Marino", "Estonia",
-                    "Republica_Checa", "Grecia", "Austria", "Polonia", "Moldavia", "Islandia",
+                    "R_Checa", "Grecia", "Austria", "Polonia", "Moldavia", "Islandia",
                     "Serbia", "Georgia", "Albania", "Portugal", "Bulgaria", "Finlandia", "Letonia",
-                    "Suiza", "Dinamarca", "Armenia"]
+                    "Suiza", "Dinamarca", "Armenia", "Holanda"]
 
-    lista_paises = fundadores
-    for i in range(random.randint(9, 19)):
+    lista_paises = big_five
+    for i in range(random.randint(10, 20)):
         afortunado = random.choice(candidatos)
         lista_paises.append(afortunado)
         candidatos.remove(afortunado)
         
-    print(lista_paises)
           
         
     for i in range(len(lista_paises)):
@@ -58,16 +57,41 @@ def inicio_participantes_2():
     return lista_paises
 
 
+def main(n):
+    
+    demo = random.randint(1, n)
+    pos_sim = []
+    for i in range(n):  
+        lista = inicio_participantes_2()
+        random.shuffle(lista)
+        ranking = votacion(lista, i+1, demo)
+        for i in range(len(ranking)):
+            nombre = ranking.get_element(i).getNombre()
+            posicion = i+1
+            y = 0
+            for q in pos_sim:
+                if q[0] == nombre:
+                    q.append(posicion)
+                    y = 1
+            
+            if y == 0:
+                pos_sim.append([nombre, posicion])
+                    
+    return pos_sim
 
+
+def stats(n, pos_sim):
+    
+    print("\n", "*"*50, "\n", sep="")
+    print("-"*50, "\n\t\tESTADÍSTICAS (simulación {} veces)\n".format(n), "–"*50, sep="")
+    print("\tPaís\t\t|\tParticipación\t|\tGanados\t\n", "-"*50, sep= "")
+    for w in pos_sim:
+        print(w[0], " "*(21-len(w[0])), len(w)-1, " "*12, w.count(1), "({0:.2f}%)".format(w.count(1)/n*100))
+        print("-"*50)
+        
 if __name__ == "__main__":
     
-    print("CONCURSANTES: ")
-    lista = inicio_participantes_2()
-    print(lista)
-    print("RANDOM: ")
-    random.shuffle(lista)
-    print(lista)
-    print("-"*30)
-    votacion(lista)
-    
+    n = int(input("Introduce el número de simulaciones: "))
+    pos_sim = main(n)
+    stats(n, pos_sim)     
     
