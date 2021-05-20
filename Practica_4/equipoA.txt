@@ -1,0 +1,10 @@
+29143188-A, Hernandez Lopez, Ana, 26/2/2003, fondoNorte
+46712483-N, Fernandez Alonso, Carlos, 6/11/1987, preferencia
+87679723-C, Alvarez Lopez, Jesus, 13/1/2012, preferencia
+42354723-Q, Gonzalez Alonso, Laura, 13/12/2004, tribuna
+08942224-P, Alonso Gutierrez, Carmen, 25/4/2017, fondoSur
+29338373-X, Gutierrez Gutierrez, Francisco, 29/9/2002, preferencia
+15864003-Y, Romero Muñoz, Julia, 21/5/1931, fondoSur
+32299700-H, Muñoz Jimenez, Pilar, 2/7/1998, preferencia
+55949036-H, Alvarez Muñoz, Carmen, 17/4/1948, fondoNorte
+71649203-V, Sanchez Sanchez, Cristina, 2/3/1969, fondoSur
