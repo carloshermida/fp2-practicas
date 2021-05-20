@@ -26,7 +26,10 @@ def random_dni():
     remainder = dni_number%23
     letter = letter_code[remainder]
     dni = str(str(dni_number) + "-" + letter)
-
+    
+    while len(dni) < 10:
+        dni = "0" + dni
+        
     if dni in no_repeat:
         dni = random_dni()
     no_repeat.append(dni)
@@ -114,11 +117,12 @@ def random_txt(team, people):
     # escribimos los nuevos socios aleatorios
     with open (file, "a") as f:
         
-        for _ in range(people):
+        for w in range(people):
             
             personal_data = "{}, {}, {}, {}".format(random_dni(), random_name(), random_birth(), random_location())
             f.write(personal_data)
-            f.write("\n")
+            if w < people - 1:
+                f.write("\n")
 
 
 
