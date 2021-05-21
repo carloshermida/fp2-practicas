@@ -12,12 +12,8 @@ from partner import socio
 from avl_tree import AVL
 from random_people import random_txt 
 from positional_binary_tree import PositionalTree
-
-
-
-def start_teams():
-    random_txt("A", 10)
-    random_txt("B", 10)
+import sys
+import random
 
 
 
@@ -143,7 +139,7 @@ def chop_down(arbol):
     
     p = arbol.first()
     
-    file = "equipo{}.txt".format("C")
+    file = "equipoFINAL.txt"
     
     # eliminamos el contenido del fichero
     with open (file, "w") as r:
@@ -199,13 +195,42 @@ def prices(ubicacion, abonados):
     
 if __name__ == "__main__":
     
-    #start_teams()
     
-    arbol_A = forest("A")
-    arbol_B = forest("B")
-
-    arbol_final = grafting(arbol_A, arbol_B)
+    if len(sys.argv) != 4:
+        print("ERROR / Formato: <nº de equipos a fusionar> <mínimo de socios por equipo> <máximo de socios por equipo>")
+        sys.exit()
+    
+    n_equipos = int(sys.argv[1])
+    if n_equipos < 2:
+        print("ERROR / nº de equipos a fusionar no válido")
+        sys.exit()
+    
+    minimo_socios = int(sys.argv[2])
+    maximo_socios = int(sys.argv[3])
+    if maximo_socios < 1 or minimo_socios < 1:
+        print("ERROR / nº de socios no válido")
+        sys.exit()
+    
+    ascii_code = 65
+    
+    lista_arboles = []
+    
+    for i in range(n_equipos):
+        name = chr(ascii_code)
+        n_socios = random.randint(minimo_socios, maximo_socios)
+        random_txt(name, n_socios)
+        lista_arboles.append(forest(name))
+        
+        ascii_code += 1
+    
+    
+    while len(lista_arboles) > 1:
+        
+        arbol1 = lista_arboles.pop(0)
+        arbol2 = lista_arboles.pop(0)
+        arbol_final = grafting(arbol1, arbol2)
+        lista_arboles.append(arbol_final)
+    
 
     chop_down(arbol_final)
     
-
