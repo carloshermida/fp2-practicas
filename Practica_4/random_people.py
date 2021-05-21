@@ -9,6 +9,7 @@ Definición de las funciones encargadas de generar socios para los equipos
 """
 
 import random
+from partner import calcular_edad
 
 no_repeat = []
 
@@ -69,11 +70,10 @@ def random_name():
     
 
 
-def random_birth():
+def random_birth(min_year, max_year):
     """Devuelve una fecha de nacimiento aleatoria entre 1922 y 2018"""
     
-    # genera pesonas entre 3-99 años
-    year = random.randint(1922, 2018)
+    year = random.randint(min_year, max_year)
     
     month = random.randint(1,12)
     
@@ -119,7 +119,27 @@ def random_txt(team, people):
         
         for w in range(people):
             
-            personal_data = "{}, {}, {}, {}".format(random_dni(), random_name(), random_birth(), random_location())
-            f.write(personal_data)
+            dni = random_dni()
+            location = random_location()
+            
+            probability_abono = random.randint(1, 4)
+            
+            if probability_abono == 1:
+                
+                personal_data_s = "${}, {}, {}, {}".format(dni, random_name(), random_birth(1922, 2003), location)
+                f.write(personal_data_s)
+                f.write("\n")
+                abonados = random.randint(1,4)
+                
+                for i in range(abonados):
+                    personal_data_a = "@{}, {}, {}, {}".format(dni, random_name(), random_birth(2004, 2021) , location)
+                    f.write(personal_data_a)
+                    if i < abonados - 1:
+                        f.write("\n")
+            
+            else:
+                personal_data = "{}, {}, {}, {}".format(dni, random_name(), random_birth(1922, 2005) , location)
+                f.write(personal_data)
+            
             if w < people - 1:
                 f.write("\n")
