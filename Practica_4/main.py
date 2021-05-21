@@ -10,11 +10,20 @@ Código principal de la Práctica 4.
 #importamos los modulos necesarios
 from partner import socio
 from avl_tree import AVL
-#from random_people import random_txt 
+from random_people import random_txt 
+from positional_binary_tree import PositionalTree
 
-#creamos la funcion forest que será le encargada de crear los arboles
+
+
+def start_teams():
+    random_txt("A", 3)
+    random_txt("B", 5)
+
+
+
 def forest(team):
     """Función encargada de crear aarboles a partir de un fichero de texto"""   
+   
     #nombremos la variable file para llamar a el archivo de texto donde se encuentran los datos de los socios de determinado club
     file = "equipo{}.txt".format(team)
     
@@ -25,31 +34,61 @@ def forest(team):
     #lo dividimos en lineas al separarlo por los saltos de linea
     lines = contenido.split("\n")
     
-    #print("Insertamos las claves en orden")
     tree = AVL()
-    #print("Árbol vacío"); preorder_indent_BST(tree,tree.root(),0)
     print("ARBOL: {}".format(team))
     
     #creamos un bucle que para cada linea guarde los datos relacionados con ese socio
     for linea in lines:
         #separa por comas cada linea para poder almacenar los datos
         data = linea.split(", ")
-        #definimos la varibale dni que nos hara de clave 
-        dni = int(data[0][0:-2])
-        
-        #print("Insertamos", dni)
         #vamos añadiendo cada socio con sus determinados datos al arbol
-        tree[dni] = socio(data[0], str(data[1]+", "+data[2]), data[3], data[4])
+        tree[data[0]] = socio(data[0], str(data[1]+", "+data[2]), data[3], data[4])
         #preorder_indent_BST(tree,tree.root(),0)
-        #print("\n")    
+        #print("\n")
+        
     preorder_indent_BST(tree,tree.root(),0)
     return tree   
     
-def talar(arbol1, arbol2):
+
+
+def grafting(arbol_1, arbol_2):
     """Función encargada de unificar los integrantes de los arboles en un fichero de texto"""
-    # get item me devuelve el valor
-    for i in range(__len__(arbol1)):
-        __getitem__()
+    
+    # Copiamos en arbol 1 en el arbol final
+    arbol_final = arbol_1
+    
+    p = arbol_2.first()
+    
+    while p is not None:
+        
+        key = p.key()
+        value = p.value()
+        
+        if not check_key(arbol_final, key):
+            
+            arbol_final[key] = value
+            #if arbol_final.find_position(key).value() != value:
+                
+        p = arbol_2.after(p)
+    print("ARBOL FINAL: \n")
+    preorder_indent_BST(arbol_final,arbol_final.root(),0)
+    
+    return arbol_final
+
+def check_key(arbol, clave):
+    
+    position = arbol.find_position(clave)
+    
+    if position is None:
+        return False
+    
+    elif position.key() == clave:
+        return True
+    
+    else:
+        return False
+  
+        
 def preorder_indent_BST(T, p, d):
     """Print preorder representation of a binary subtree of T rooted at p at depth d.
     To print aTree completely call preorder_indent_BST(aTree, aTree.root(), 0)"""
@@ -58,11 +97,45 @@ def preorder_indent_BST(T, p, d):
         print(2*d*' ' + "(" + str(p.key()) + "," +  str(p.value()) + ")") 
         preorder_indent_BST(T, T.left(p), d+1) # left child depth is d+1
         preorder_indent_BST(T, T.right(p), d+1) # right child depth is d+1
+        
+        
+        
+def chop_down(arbol):
+    
+    p = arbol.first()
+    
+    file = "equipo{}.txt".format("C")
+    
+    # eliminamos el contenido del fichero
+    with open (file, "w") as r:
+        r.write("")
+         
+    while p is not None:
+        
+        value = p.value()
+
+        with open (file, "a") as f:
+            personal_data = "{}, {}, {}, {}".format(value.getDni(), value.getNombre(), value.getFecha(), value.getUbicacion())
+            f.write(personal_data)
+            
+            p = arbol.after(p)
+            if p is not None:
+                f.write("\n")
+        
+            
+    
+    
     
 if __name__ == "__main__":
     
-    forest("A")
-    forest("B")
-    talar(forest)
+    #start_teams()
+    
+    arbol_A = forest("A")
+    arbol_B = forest("B")
+    
+    arbol_final = grafting(arbol_A, arbol_B)
+
+    chop_down(arbol_final)
+    
     
 
