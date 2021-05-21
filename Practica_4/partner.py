@@ -33,6 +33,7 @@ class socio:
         self.nombre = nombre
         self.fecha_de_nacimiento = fecha_de_nacimiento
         self.ubicacion = ubicacion
+        self.lista_abonados = []
         
     def getNombre(self):
         """Devuelve el nombre"""
@@ -55,4 +56,29 @@ class socio:
         """Devuelve el nombre"""
         return self.ubicacion
     
+    def setAbonado(self, abonado):
+        
+        self.lista_abonados.append(abonado)
+        
+    def getNombreAbonado(self):
+        
+        if len(self.lista_abonados) == 0:
+            return ""
+        
+        nombres = str(" // ")
+        for abonado in self.lista_abonados:
+            nombres += str(abonado.getNombre())
+            if self.lista_abonados.index(abonado) < len(self.lista_abonados) - 1:
+                nombres += str(" / ")
+            
+        return nombres
+    
+    
+    def getListaAbonados(self):
+        
+        return self.lista_abonados
+    
+        
+        
+            
     
