@@ -70,7 +70,7 @@ def random_name():
 
 
 def random_birth():
-    """Devuelve una fecha de nacimiento aleatoria entre 1922y 2018"""
+    """Devuelve una fecha de nacimiento aleatoria entre 1922 y 2018"""
     
     # genera pesonas entre 3-99 años
     year = random.randint(1922, 2018)
@@ -123,14 +123,3 @@ def random_txt(team, people):
             f.write(personal_data)
             if w < people - 1:
                 f.write("\n")
-
-
-
-#######################################
-#               TEST
-######################################
-
-if __name__ == "__main__":
-
-    random_txt("A", 10)
-    random_txt("B", 20)
