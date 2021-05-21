@@ -9,7 +9,6 @@ Definición de las funciones encargadas de generar socios para los equipos
 """
 
 import random
-from partner import calcular_edad
 
 no_repeat = []
 
@@ -36,7 +35,6 @@ def random_dni():
     no_repeat.append(dni)
     
     return dni
-
 
 
 def random_name():
@@ -69,12 +67,10 @@ def random_name():
     return identity
     
 
-
 def random_birth(min_year, max_year):
     """Devuelve una fecha de nacimiento aleatoria entre 1922 y 2018"""
     
     year = random.randint(min_year, max_year)
-    
     month = random.randint(1,12)
     
     if month in [1,3,5,7,8,10,12]:
@@ -93,15 +89,12 @@ def random_birth(min_year, max_year):
     return date
 
 
-
 def random_location():
     """Devuleve una posición en el estadio aleatoria"""
     
     locations = ["tribuna", "preferencia", "fondoNorte", "fondoSur"]
     location = random.choice(locations)
-    
     return location
-
 
 
 def random_txt(team, people):
@@ -110,11 +103,9 @@ def random_txt(team, people):
     
     file = "equipo{}.txt".format(team)
     
-    # eliminamos el contenido del fichero
     with open (file, "w") as r:
         r.write("")
     
-    # escribimos los nuevos socios aleatorios
     with open (file, "a") as f:
         
         for w in range(people):
