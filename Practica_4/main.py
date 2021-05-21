@@ -16,8 +16,8 @@ from positional_binary_tree import PositionalTree
 
 
 def start_teams():
-    random_txt("A", 3)
-    random_txt("B", 5)
+    random_txt("A", 10)
+    random_txt("B", 10)
 
 
 
@@ -35,16 +35,33 @@ def forest(team):
     lines = contenido.split("\n")
     
     tree = AVL()
-    print("ARBOL: {}".format(team))
+    print("\nARBOL: {}".format(team))
     
     #creamos un bucle que para cada linea guarde los datos relacionados con ese socio
     for linea in lines:
+        
+        abonado = False
         #separa por comas cada linea para poder almacenar los datos
         data = linea.split(", ")
+        
+        if linea.startswith("$"):
+            dni = data[0][1:]
+        
+        elif linea.startswith("@"):
+            abonado = True
+            dni_abonado = data[0][1:]
+            posicion_socio = tree.find_position(dni_abonado)
+            posicion_socio.value().setAbonado(socio(dni_abonado, str(data[1]+", "+data[2]), data[3], data[4]))
+            
+        else: 
+            dni = data[0]
+        
         #vamos añadiendo cada socio con sus determinados datos al arbol
-        tree[data[0]] = socio(data[0], str(data[1]+", "+data[2]), data[3], data[4])
-        #preorder_indent_BST(tree,tree.root(),0)
-        #print("\n")
+        if not abonado:
+            
+            tree[dni] = socio(dni, str(data[1]+", "+data[2]), data[3], data[4])
+     
+        
         
     preorder_indent_BST(tree,tree.root(),0)
     return tree   
@@ -62,18 +79,37 @@ def grafting(arbol_1, arbol_2):
     while p is not None:
         
         key = p.key()
-        value = p.value()
+        value = p.value()  
         
-        if not check_key(arbol_final, key):
+        if check_key(arbol_final, key):
+           
+            abonados_2 = value.getListaAbonados()
             
+            position_final = arbol_final.find_position(key)
+            abonados_final = position_final.value().getListaAbonados()
+            
+            tmp = []
+            
+            for i in abonados_final:
+                tmp.append(i.getNombre())
+            
+            for item in abonados_2:
+                if item.getNombre() not in tmp:
+                    abonados_final.append(item)
+            
+        else:
             arbol_final[key] = value
-            #if arbol_final.find_position(key).value() != value:
-                
+         
+        
         p = arbol_2.after(p)
-    print("ARBOL FINAL: \n")
+   
+    
+    print("\nARBOL FINAL:")
     preorder_indent_BST(arbol_final,arbol_final.root(),0)
     
     return arbol_final
+
+
 
 def check_key(arbol, clave):
     
@@ -88,13 +124,16 @@ def check_key(arbol, clave):
     else:
         return False
   
-        
+    
+    
 def preorder_indent_BST(T, p, d):
     """Print preorder representation of a binary subtree of T rooted at p at depth d.
     To print aTree completely call preorder_indent_BST(aTree, aTree.root(), 0)"""
     if p is not None:
         # use depth for indentation
-        print(2*d*' ' + "(" + str(p.key()) + "," +  str(p.value()) + ")") 
+        print(2*d*' ' + "(" + str(p.key()) + "," +  str(p.value().getNombre()) + str(p.value().getNombreAbonado()) + ")") 
+        
+        
         preorder_indent_BST(T, T.left(p), d+1) # left child depth is d+1
         preorder_indent_BST(T, T.right(p), d+1) # right child depth is d+1
         
@@ -115,16 +154,48 @@ def chop_down(arbol):
         value = p.value()
 
         with open (file, "a") as f:
-            personal_data = "{}, {}, {}, {}".format(value.getDni(), value.getNombre(), value.getFecha(), value.getUbicacion())
-            f.write(personal_data)
             
+            if len(value.getListaAbonados()) == 0:
+                
+                precio = prices(value.getUbicacion(), 0)
+                personal_data = "{}, {}, {}, {}, {}€".format(value.getDni(), value.getNombre(), value.getFecha(), value.getUbicacion(), precio)
+                f.write(personal_data)  
+            
+            else:
+                precio = prices(value.getUbicacion(), len(value.getListaAbonados()))
+                personal_data_s = "${}, {}, {}, {}, {}€".format(value.getDni(), value.getNombre(), value.getFecha(), value.getUbicacion(), precio)
+                f.write(personal_data_s)
+                f.write("\n")
+                
+                for abonado in value.getListaAbonados():
+                    personal_data_a = "@{}, {}, {}, {}".format(abonado.getDni(), abonado.getNombre(), abonado.getFecha(), value.getUbicacion())
+                    f.write(personal_data_a) 
+                    if value.getListaAbonados().index(abonado) < len(value.getListaAbonados()) - 1:
+                        f.write("\n")
+                    
             p = arbol.after(p)
+            
             if p is not None:
                 f.write("\n")
         
-            
+def prices(ubicacion, abonados):
     
+    if ubicacion == "tribuna":
+        cuota = 2024
     
+    elif ubicacion == "preferencia":
+        cuota = 1609
+    
+    elif ubicacion == "fondoNorte":
+        cuota = 1101
+        
+    else:
+        cuota = 660
+        
+    precio = cuota + int(abonados)*cuota/2
+    
+    return precio
+
     
 if __name__ == "__main__":
     
@@ -132,10 +203,9 @@ if __name__ == "__main__":
     
     arbol_A = forest("A")
     arbol_B = forest("B")
-    
+
     arbol_final = grafting(arbol_A, arbol_B)
 
     chop_down(arbol_final)
-    
     
 
