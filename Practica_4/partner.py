@@ -12,19 +12,20 @@ de la clase socio
 from datetime import date, datetime
 
 def calcular_edad(fecha_nacimiento):
-    """ calcula la edad en años de una persona que ha nacido 
-        en la fecha indicada en el parametro de tipo date fecha_nacimiento """
-    # obtenemos la fecha actual
+    """Calcula la edad en años de una persona que ha nacido 
+        en la fecha indicada en el parametro de tipo date fecha_nacimiento"""
+    
+    # Obtenemos la fecha actual
     hoy = date.today()
-    # restamos los años
+    # Restamos los años
     resultado = (hoy.year - fecha_nacimiento.year)
-    # ajustamos por mes y día
+    # Ajustamos por mes y día
     resultado -= ((hoy.month, hoy.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
     return resultado
     
 
 class socio:
-    """"Definición de las funciones de la clase socio"""
+    """Definición de las funciones de la clase socio"""
     
     def __init__(self, dni, nombre, fecha_de_nacimiento, ubicacion):
         """Crea un nuevo socio"""
@@ -40,28 +41,28 @@ class socio:
         return self.nombre
     
     def getDni(self):
-        """Devuelve el nombre"""
+        """Devuelve el DNI"""
         return self.dni
     
     def getFecha(self):
-        """Devuelve el nombre"""
+        """Devuelve la fecha de nacimiento"""
         return self.fecha_de_nacimiento
     
     def getEdad(self):
-        """Devuelve la edad del socio"""
+        """Devuelve la edad"""
         fecha = datetime.strptime(self.fecha_de_nacimiento, "%d/%m/%Y")
         return calcular_edad(fecha)
     
     def getUbicacion(self):
-        """Devuelve el nombre"""
+        """Devuelve la ubicaión"""
         return self.ubicacion
     
     def setAbonado(self, abonado):
-        
+        """Añade un abonado a su lista de abonados"""
         self.lista_abonados.append(abonado)
         
     def getNombreAbonado(self):
-        
+        """Devuelve un string con los nombres de sus abonados"""
         if len(self.lista_abonados) == 0:
             return ""
         
@@ -70,12 +71,10 @@ class socio:
             nombres += str(abonado.getNombre())
             if self.lista_abonados.index(abonado) < len(self.lista_abonados) - 1:
                 nombres += str(" / ")
-            
         return nombres
     
-    
     def getListaAbonados(self):
-        
+        """Devuelve su lista de abonados"""
         return self.lista_abonados
     
         
